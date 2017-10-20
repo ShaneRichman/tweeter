@@ -18,8 +18,15 @@
 
 .new-tweet form textarea {
   width: 100%;
+  border-radius: 3px;
+}
+
+.new-tweet form input {
+  margin: 2px;
 }
 
 .new-tweet .counter {
   float: right;
+  font-weight: 700;
+  line-height: 2;
 }

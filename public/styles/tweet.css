@@ -3,7 +3,7 @@ section {
 }
 
 article.tweet {
-  border: 1px solid #6D6D6D;
+  border: 1px solid #B4B4B4;
   border-radius: 8px;
   margin: 1em 0px;
 }
@@ -71,6 +71,6 @@ footer .bottom-img {
   transition: opacity .25s ease-in-out;
 }
 
-article.tweet footer:hover .bottom-img {
+article.tweet:hover .bottom-img {
   opacity: 1;
 }

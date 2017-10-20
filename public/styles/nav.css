@@ -26,12 +26,20 @@
 }
 
 #nav-bar .compose-tweet button {
-  border: 3px solid #63a0cc;
+  border: 2px solid #2c2e74;
   padding: 10px;
   margin: 10px 0px 10px 0px;
   height: 75%;
   width: 8em;
   text-align: right;
+}
+
+#nav-bar .compose-tweet:hover {
+  opacity: .85;
+}
+
+#nav-bar .compose-tweet:active {
+  opacity: .75;
 }
 
 #nav-bar .compose-tweet button b {
