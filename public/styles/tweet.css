@@ -40,8 +40,22 @@ article header p {
   margin: 0px 10px 0px 0px
 }
 
-article p {
-  margin-left: 1em;
+article .tweet-body {
+  min-height: 80px;
+  padding: 1em;
+}
+
+article .tweet-body p {
+  float: left;
+  word-wrap: break-word;
+  margin: 0;
+  max-width: 290px;
+}
+
+article .tweet-body .like-button {
+  float: right;
+  width: 50px;
+  height: 30px;
 }
 
 article.tweet footer {

@@ -23,7 +23,6 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   }
   const DataHelpers = require("./lib/data-helpers.js")(db);
   const tweetsRoutes = require("./routes/tweets")(DataHelpers);
-
   app.use("/tweets", tweetsRoutes);
 
   app.listen(PORT, () => {
@@ -33,9 +32,7 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
 })
 
 
-
 // The in-memory database of tweets. It's a basic object with an array in it.
-// const db = require("./lib/in-memory-db");
 
 // Because it exports a function that expects the `db` as a parameter, we can
 // require it and pass the `db` parameter immediately:

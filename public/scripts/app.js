@@ -1,15 +1,10 @@
 $(function() {
 
   function renderTweets(arrayOfTweets) {
-    $.ajax({
-      method: 'GET',
-      url: '/tweets/'
-    }).done(function(arrayOfTweets) {
-      $('#tweets-container').empty();
-      for (var tweet of arrayOfTweets) {
-        $('#tweets-container').prepend(createTweetElement(tweet));
-      }
-    })
+    $('#tweets-container').empty();
+    for (var tweet of arrayOfTweets) {
+      $('#tweets-container').prepend(createTweetElement(tweet));
+    }
   }
 
   function createTweetElement(tweet) {
@@ -31,9 +26,19 @@ $(function() {
             })
           ]
         }),
-        $('<p>', {
-          text: tweet.content.text
+        $('<div>', {
+          class: 'tweet-body',
+          html: [
+            $('<p>', {
+              text: tweet.content.text
+            }),
+            $('<button>', {
+              class: 'like-button',
+              text: tweet.content.likes
+            })
+          ]
         }),
+
         $('<footer>', {
           html: [
             $('<div>', {
@@ -69,8 +74,8 @@ $(function() {
     $.ajax({
       method: 'GET',
       url: '/tweets/'
-    }).done(function(Json) {
-      renderTweets(Json);
+    }).done(function(Tweets) {
+      renderTweets(Tweets);
     });
   }
 
@@ -80,14 +85,29 @@ $(function() {
     newTweet.find('form').find('textarea').focus();
   })
 
+  $('section#tweets-container').on('click', '.like-button', function() {
+    var current = $(this);
+
+
+    $.ajax({
+      method: 'PUT',
+      url: '/tweets/'
+    }).done(function() {
+      loadTweets();
+    });
+
+  })
+
+  loadTweets();
+
   $('section.new-tweet form').on('submit', function(event) {
     event.preventDefault();
     var theForm = this;
-    var data = $(this).serialize();
-    var charCount = data.length - 5;
-    if (charCount > 140) {
+    var data = $(theForm).serialize();
+    var charLeft = Number($(theForm).text());
+    if (charLeft < 0) {
       alert("you cant submit a tweet with more than 140 characters");
-    } else if (charCount < 1) {
+    } else if (charLeft >= 140) {
       alert("you cant submit an empty tweet");
     } else {
       $.ajax({
@@ -96,11 +116,10 @@ $(function() {
         data: data
       }).done(function() {
         theForm.reset();
-        renderTweets(data);
+        loadTweets();
       });
     }
   })
 
-  loadTweets();
 
 });

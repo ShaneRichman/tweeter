@@ -8,10 +8,17 @@ module.exports = function makeDataHelpers(db) {
 
     // Saves a tweet to `db`
     saveTweet: function(newTweet, callback) {
-      console.log(newTweet);
+      // console.log(newTweet);
       db.collection('tweets').insert(newTweet);
       callback(null, true);
     },
+
+    updateTweet: function(plusOne, callback) {
+      // console.log(plusOne);
+      db.collection('tweets').update({"user" : {"name": "Newton"}, "likes":"2"});
+      callback(null, true);
+    },
+
 
     // Get all tweets in `db`, sorted by newest first
     getTweets: function(callback) {
