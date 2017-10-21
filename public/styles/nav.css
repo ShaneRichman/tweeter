@@ -31,7 +31,7 @@
   margin: 10px 0px 10px 0px;
   height: 75%;
   width: 8em;
-  text-align: right;
+  border-radius: 5px;
 }
 
 #nav-bar .compose-tweet:hover {
