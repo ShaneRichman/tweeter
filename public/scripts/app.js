@@ -34,7 +34,7 @@ $(function() {
             }),
             $('<button>', {
               class: 'like-button',
-              text: tweet.content.likes
+              text: 1
             })
           ]
         }),
@@ -87,7 +87,6 @@ $(function() {
 
   $('section#tweets-container').on('click', '.like-button', function() {
     var current = $(this);
-
 
     $.ajax({
       method: 'PUT',
