@@ -26,9 +26,14 @@ module.exports = function makeDataHelpers(db) {
     },
 
     likeTweet: function(tweetID, callback) {
-      db.collection('tweets').update({tweetID}, { $inc: {likes: +1}});
+      console.log("updated _id: ", tweetID);
+      db.collection('tweets').updateOne(
+        {_id: tweetID},
+        { $inc: {likes: +1}},
+        {upsert: true}
+        );
+
       callback(null, true);
     }
-
   };
 }

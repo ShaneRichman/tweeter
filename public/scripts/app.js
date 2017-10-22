@@ -11,6 +11,7 @@ $(function() {
     var timeStamp = moment(tweet.created_at).fromNow();
     return $('<article>', {
       'class': 'tweet',
+      'id': tweet._id,
       html: [
         $('<header>', {
           html: [
@@ -59,7 +60,7 @@ $(function() {
                 }),
                 $('<button>', {
                   'class': 'like-button',
-                  'data-like-count': 1,
+                  'data-like-count': tweet.likes,
                   text: 'like: ' + tweet.likes
                 })
               ]
@@ -86,15 +87,15 @@ $(function() {
   })
 
   $('section#tweets-container').on('click', '.like-button', function() {
-    var current = $(this);
-    // console.log(current.data("like-count"))
+    var currentArticleID = $(this).parent().parent().parent().attr('id');
     // var likes = current.data("like-count");
     // likes++;
     // current.data('like-count', likes);
 
     $.ajax({
         method: 'POST',
-        url: 'tweets/like'
+        url: 'tweets/like',
+        data: "tweetId=" + currentArticleID
       }).done(function() {
         loadTweets();
       });
@@ -106,6 +107,7 @@ $(function() {
     event.preventDefault();
     var theForm = this;
     var data = $(theForm).serialize();
+    console.log(data);
     var charLeft = Number($(theForm).text());
     if (charLeft < 0) {
       alert("you cant submit a tweet with more than 140 characters");

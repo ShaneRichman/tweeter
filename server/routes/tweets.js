@@ -1,5 +1,5 @@
 "use strict";
-
+const { ObjectId } = require("mongodb");
 const userHelper = require("../lib/util/user-helper")
 
 const express = require('express');
@@ -51,10 +51,9 @@ module.exports = function(DataHelpers) {
 
 
   tweetsRoutes.post("/like", function(req, res) {
-      // res.send("heyo");
-    const tweet = {content: {text: "NEW ATTEMPT"}}
+    const tweetID = ObjectId(req.body.tweetId);
 
-    DataHelpers.likeTweet(tweet, (err) => {
+    DataHelpers.likeTweet(tweetID, (err) => {
     });
   });
 
