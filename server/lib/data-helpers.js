@@ -13,13 +13,6 @@ module.exports = function makeDataHelpers(db) {
       callback(null, true);
     },
 
-    updateTweet: function(plusOne, callback) {
-      // console.log(plusOne);
-      db.collection('tweets').update({"user" : {"name": "Newton"}, "likes":"2"});
-      callback(null, true);
-    },
-
-
     // Get all tweets in `db`, sorted by newest first
     getTweets: function(callback) {
       const sortNewestFirst = (a, b) => a.created_at - b.created_at;
@@ -30,18 +23,12 @@ module.exports = function makeDataHelpers(db) {
         callback(null, tweets.sort(sortNewestFirst));
       });
       // callback(null, db.tweets.sort(sortNewestFirst));
+    },
+
+    likeTweet: function(tweetID, callback) {
+      db.collection('tweets').update({tweetID}, { $inc: {likes: +1}});
+      callback(null, true);
     }
 
   };
 }
-
-
-
-// db.collection("tweeter").find().toArray((err, results) => {
-//     if (err) throw err;
-
-//     console.log("results array: ", results);
-
-//     // This is the end...
-//     db.close();
-//   });

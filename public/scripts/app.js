@@ -31,14 +31,9 @@ $(function() {
           html: [
             $('<p>', {
               text: tweet.content.text
-            }),
-            $('<button>', {
-              class: 'like-button',
-              text: 1
             })
           ]
         }),
-
         $('<footer>', {
           html: [
             $('<div>', {
@@ -61,6 +56,11 @@ $(function() {
                 $('<img>', {
                   'class': 'bottom-img',
                   'src': '/images/bird.png'
+                }),
+                $('<button>', {
+                  'class': 'like-button',
+                  'data-like-count': 1,
+                  text: 'like: ' + tweet.likes
                 })
               ]
             })
@@ -87,14 +87,17 @@ $(function() {
 
   $('section#tweets-container').on('click', '.like-button', function() {
     var current = $(this);
+    // console.log(current.data("like-count"))
+    // var likes = current.data("like-count");
+    // likes++;
+    // current.data('like-count', likes);
 
     $.ajax({
-      method: 'PUT',
-      url: '/tweets/'
-    }).done(function() {
-      loadTweets();
-    });
-
+        method: 'POST',
+        url: 'tweets/like'
+      }).done(function() {
+        loadTweets();
+      });
   })
 
   loadTweets();
