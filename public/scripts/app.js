@@ -48,20 +48,20 @@ $(function() {
               html: [
                 $('<img>', {
                   'class': 'bottom-img',
-                  'src': '/images/bird.png'
+                  'src': '/images/flag.png'
                 }),
                 $('<img>', {
                   'class': 'bottom-img',
-                  'src': '/images/bird.png'
+                  'src': '/images/heart.png'
                 }),
                 $('<img>', {
                   'class': 'bottom-img',
-                  'src': '/images/bird.png'
+                  'src': '/images/repost.png'
                 }),
                 $('<button>', {
                   'class': 'like-button',
                   'data-like-count': tweet.likes,
-                  text: 'like: ' + tweet.likes
+                  text: 'likes: ' + tweet.likes
                 })
               ]
             })
