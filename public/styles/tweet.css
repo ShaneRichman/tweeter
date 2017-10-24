@@ -75,3 +75,7 @@ footer .bottom-img {
 article.tweet:hover .bottom-img {
   opacity: 1;
 }
+
+article.tweet footer div button {
+  float: right;
+}

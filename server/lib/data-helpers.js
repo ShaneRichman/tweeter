@@ -8,7 +8,7 @@ module.exports = function makeDataHelpers(db) {
 
     // Saves a tweet to `db`
     saveTweet: function(newTweet, callback) {
-      console.log(newTweet);
+      // console.log(newTweet);
       db.collection('tweets').insert(newTweet);
       callback(null, true);
     },
@@ -23,18 +23,16 @@ module.exports = function makeDataHelpers(db) {
         callback(null, tweets.sort(sortNewestFirst));
       });
       // callback(null, db.tweets.sort(sortNewestFirst));
-    }
+    },
 
+    likeTweet: function(tweetID, callback) {
+      db.collection('tweets').updateOne(
+        {_id: tweetID},
+        { $inc: {likes: +1}},
+        {upsert: true}
+        );
+
+      callback(null, true);
+    }
   };
 }
-
-
-
-// db.collection("tweeter").find().toArray((err, results) => {
-//     if (err) throw err;
-
-//     console.log("results array: ", results);
-
-//     // This is the end...
-//     db.close();
-//   });

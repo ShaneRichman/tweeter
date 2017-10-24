@@ -30,8 +30,8 @@
   padding: 10px;
   margin: 10px 0px 10px 0px;
   height: 75%;
-  width: 8em;
   border-radius: 5px;
+  width: 8em;
 }
 
 #nav-bar .compose-tweet:hover {
