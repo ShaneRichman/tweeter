@@ -1,5 +1,7 @@
 "use strict";
-const { ObjectId } = require("mongodb");
+const {
+  ObjectId
+} = require("mongodb");
 const userHelper = require("../lib/util/user-helper")
 
 const express = require('express');
@@ -51,9 +53,22 @@ module.exports = function(DataHelpers) {
 
 
   tweetsRoutes.post("/like", function(req, res) {
+    if (!req.body.tweetId) {
+      res.status(400).json({
+        error: 'invalid request: no data in POST body'
+      });
+      return;
+    }
     const tweetID = ObjectId(req.body.tweetId);
 
     DataHelpers.likeTweet(tweetID, (err) => {
+      if (err) {
+        res.status(500).json({
+          error: err.message
+        });
+      } else {
+        res.status(201).send();
+      }
     });
   });
 

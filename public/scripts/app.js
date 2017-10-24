@@ -87,7 +87,7 @@ $(function() {
   })
 
   $('section#tweets-container').on('click', '.like-button', function() {
-    var currentArticleID = $(this).parent().parent().parent().attr('id');
+    var currentArticleID = "tweetId=" + $(this).parent().parent().parent().attr('id');
     // var likes = current.data("like-count");
     // likes++;
     // current.data('like-count', likes);
@@ -95,7 +95,7 @@ $(function() {
     $.ajax({
         method: 'POST',
         url: 'tweets/like',
-        data: "tweetId=" + currentArticleID
+        data: currentArticleID
       }).done(function() {
         loadTweets();
       });
