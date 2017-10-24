@@ -22,9 +22,8 @@ module.exports = function makeDataHelpers(db) {
         }
         callback(null, tweets.sort(sortNewestFirst));
       });
-      // callback(null, db.tweets.sort(sortNewestFirst));
     },
-
+    // Increment the like counter in the `db`
     likeTweet: function(tweetID, callback) {
       db.collection('tweets').updateOne(
         {_id: tweetID},
