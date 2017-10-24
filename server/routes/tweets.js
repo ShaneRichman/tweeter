@@ -8,7 +8,7 @@ const express = require('express');
 const tweetsRoutes = express.Router();
 
 module.exports = function(DataHelpers) {
-
+// Route for getting tweets
   tweetsRoutes.get("/", function(req, res) {
 
     DataHelpers.getTweets((err, tweets) => {
@@ -21,7 +21,7 @@ module.exports = function(DataHelpers) {
       }
     });
   });
-
+// Rout for posting a new tweet
   tweetsRoutes.post("/", function(req, res) {
     if (!req.body.text) {
       res.status(400).json({
@@ -51,7 +51,7 @@ module.exports = function(DataHelpers) {
     });
   });
 
-
+// Route for when Someone likes a tweet
   tweetsRoutes.post("/like", function(req, res) {
     if (!req.body.tweetId) {
       res.status(400).json({
@@ -71,8 +71,5 @@ module.exports = function(DataHelpers) {
       }
     });
   });
-
-
   return tweetsRoutes;
-
 }

@@ -1,4 +1,5 @@
 const MAXCHARS = 140;
+//When document loads checks input from user to display current characters left
 $(function() {
   $(".new-tweet form").on("input", "textarea", function() {
     const charCounter = $(this).parent().find(".counter");

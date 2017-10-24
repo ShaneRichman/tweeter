@@ -53,15 +53,15 @@ $(function() {
                 }),
                 $('<img>', {
                   'class': 'bottom-img',
-                  'src': '/images/flag.png'
-                }),
-                $('<img>', {
-                  'class': 'bottom-img',
                   'src': '/images/heart.png'
                 }),
                 $('<img>', {
                   'class': 'bottom-img',
                   'src': '/images/repost.png'
+                }),
+                $('<img>', {
+                  'class': 'bottom-img',
+                  'src': '/images/flag.png'
                 })
               ]
             })
@@ -79,16 +79,15 @@ $(function() {
       renderTweets(Tweets);
     });
   }
-
+// toggles new tweet window
   $('#nav-bar .compose-tweet').on('click', 'button', function() {
     var newTweet = $('.container').find('.new-tweet');
     newTweet.slideToggle();
     newTweet.find('form').find('textarea').focus();
   })
-
+// increments like button by one
   $('section#tweets-container').on('click', '.like-button', function() {
     var currentArticleID = "tweetId=" + $(this).parent().parent().parent().attr('id');
-
     $.ajax({
         method: 'POST',
         url: 'tweets/like',
@@ -99,7 +98,7 @@ $(function() {
   })
 
   loadTweets();
-
+// checks if valid tweet, posts, and resets the fields
   $('section.new-tweet form').on('submit', function(event) {
     event.preventDefault();
     var theForm = $(this);
@@ -120,6 +119,4 @@ $(function() {
       });
     }
   })
-
-
 });
