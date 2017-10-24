@@ -11,7 +11,13 @@ This repository is the starter code for the project: Students will fork and clon
 3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
 4. Go to <http://localhost:8080/> in your browser.
 
+!["Screenshot of Main page"](https://github.com/ShaneRichman/tinyapp/blob/master/docs/urls-page.png)
+!["Screenshot of Login page "](https://github.com/ShaneRichman/tinyapp/blob/master/docs/login-page.png)
+
 ## Dependencies
 
-- Express
+- Express 4.13.4
 - Node 5.10.x or above
+- Body-parser 1.15.2
+- Chance 1.0.2
+- Md5 2.1.0
