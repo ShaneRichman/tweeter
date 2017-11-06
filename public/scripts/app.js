@@ -101,9 +101,9 @@ $(function() {
 // checks if valid tweet, posts, and resets the fields
   $('section.new-tweet form').on('submit', function(event) {
     event.preventDefault();
-    var theForm = $(this);
-    var data = theForm.serialize();
-    var charLeft = Number(theForm.text());
+    var theForm = this;
+    var data = $(theForm).serialize();
+    var charLeft = Number($(theForm).text());
     if (charLeft < 0) {
       alert("you cant submit a tweet with more than 140 characters");
     } else if (charLeft >= 140) {
